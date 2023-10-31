@@ -4,7 +4,9 @@ import { BadRequest, Forbidden } from "../utils/Errors.js"
 class AlbumsService {
   async getAlbums(query) {
     // const albums = await dbContext.Albums.find().populate('creator', 'name picture')
-    const albums = await dbContext.Albums.find(query).populate('creator', 'name picture')
+    const albums = await dbContext.Albums.find(query)
+      .populate('creator', 'name picture')
+      .populate('memberCount')
     return albums
   }
   async getAlbumById(albumId) {
