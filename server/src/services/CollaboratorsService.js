@@ -37,8 +37,13 @@ class CollaboratorsService {
   }
   async getMyAlbumCollaborations(userId) {
     const collaborations = await dbContext.Collaborators.find({ accountId: userId })
-      .populate('album')
-      .populate('memberCount')
+      .populate({
+        path: 'album',
+        populate: {
+          path: 'memberCount'
+        }
+      })
+    // .populate('album')
     return collaborations
   }
 }
