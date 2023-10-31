@@ -77,12 +77,14 @@ import { logger } from "../utils/Logger.js";
 import Pop from "../utils/Pop.js";
 import { albumsService } from "../services/AlbumsService.js";
 import { Modal } from "bootstrap";
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
     const editable = ref({});
     // ASSIGN A VARIABLE TO HOLD ALL THE CATEGORIES WE MADE FROM SERVER SO WE CAN V-FOR OVER THEM
     const categories = ["misc", "dogs", "games", "gachamon", "animals", "cats"];
+    const router = useRouter();
 
     return {
       // MAKE SURE YOU RETURN ANY VARIABLES YOU WILL WANT TO USE IN YOUR HTML
@@ -92,11 +94,12 @@ export default {
       async createAlbum() {
         try {
           const albumData = editable.value;
-          await albumsService.createAlbum(albumData);
+          const album = await albumsService.createAlbum(albumData);
           // CLEAR OUT OUR EDITABLE, AND CLOSE OUR MODAL ON CREATE
           Pop.success("Created Album!");
           editable.value = {};
           Modal.getOrCreateInstance("#createAlbumModal").hide();
+          router.push({ name: "Album", params: { albumId: album.id } });
         } catch (error) {
           logger.error("[ERROR]", error);
           Pop.error("[ERROR]", error.message);

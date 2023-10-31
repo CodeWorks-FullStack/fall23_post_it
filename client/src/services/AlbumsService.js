@@ -20,6 +20,8 @@ class AlbumsService {
     const res = await api.post(`api/albums`, albumData);
     logger.log("[ALBUMS SERVICE] createAlbum => res.data:", res.data);
     AppState.albums.push(new Album(res.data));
+    const newAlbum = new Album(res.data);
+    return newAlbum;
   }
 
   async destroyAlbum(albumId) {

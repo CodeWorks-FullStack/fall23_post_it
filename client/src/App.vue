@@ -37,6 +37,5 @@ body {
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
-  color: white;
 }
 </style>
