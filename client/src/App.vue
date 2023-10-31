@@ -2,7 +2,7 @@
   <header class="sticky-top">
     <Navbar />
   </header>
-  <main>
+  <main class="pt-5">
     <router-view />
   </main>
   <AlbumModal />

@@ -15,7 +15,7 @@
           </div>
           <!-- SECTION ALBUM DETAILS RIGHT SIDE -->
           <div class="col-6">
-            <div class="p-1 bg-warning text-black rounded">
+            <div class="p-2 bg-warning text-black rounded">
               <p>{{ album.title }}</p>
               <p>by {{ album.creator.name }}</p>
             </div>
@@ -34,7 +34,11 @@
       <!-- SECTION PICTURES -- RIGHT SIDE -->
       <div class="col-12 col-lg-9">
         <div class="row">
-          <div v-for="picture in pictures" :key="picture.id" class="col-3 mb-2">
+          <div
+            v-for="picture in pictures"
+            :key="picture.id"
+            class="col-3 mb-2 div-height"
+          >
             <PictureCard :pictureProp="picture" />
           </div>
         </div>

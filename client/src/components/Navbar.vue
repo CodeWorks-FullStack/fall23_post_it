@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg px-3 nav-blur">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <p class="fs-1 text-white fw-bold">
+        <p class="fs-1 text-white fw-bold m-0">
           <i class="mdi mdi-film"></i> Post_It
         </p>
       </div>
@@ -25,7 +25,7 @@
           <!-- USE OUR ROUTE VARIABLE TO CHECK IF THE PAGE NAME EQUALS THE ALBUM PAGE
  -->
           <button
-            class="btn btn-outline-light"
+            class="btn btn-outline text-white"
             @click="destroyAlbum(album)"
             v-if="route.name == 'Album' && album.creatorId == account.id"
           >
@@ -38,7 +38,7 @@
  -->
 
           <button
-            class="btn btn-outline-light"
+            class="btn btn-outline text-white"
             @click="destroyAlbum(album)"
             v-if="route.name == 'Album' && album.creatorId == account.id"
           >
@@ -125,5 +125,13 @@ a:hover {
 .nav-blur {
   backdrop-filter: blur(15px);
   border-bottom: 1px rgba(255, 255, 255, 0.352) solid;
+}
+
+.btn {
+  transition: ease-in-out 1s !important;
+}
+
+.btn:hover {
+  text-decoration: underline;
 }
 </style>
