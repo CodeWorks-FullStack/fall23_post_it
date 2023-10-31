@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <div class="row">
+      <!-- MAGIC vvvvvv STRING -->
       <div v-for="album in albums" :key="album.id" class="col-3">
+        <!-- NEEDS TO MATCH HERE vvv -->
         <AlbumCard :albumProp="album" />
       </div>
     </div>

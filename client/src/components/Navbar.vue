@@ -1,8 +1,10 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+  <nav class="navbar navbar-expand-lg px-3 nav-blur">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="../assets/img/cw-logo.png" height="45" />
+        <p class="fs-1 text-white fw-bold">
+          <i class="mdi mdi-film"></i> Post_It
+        </p>
       </div>
     </router-link>
     <button
@@ -18,19 +20,13 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
-        <li>
-          <router-link
-            :to="{ name: 'About' }"
-            class="btn text-success lighten-30 selectable text-uppercase"
-          >
-            About
-          </router-link>
-        </li>
         <li v-if="album && !album.archived">
           <!-- TODO NOTE -->
+          <!-- USE OUR ROUTE VARIABLE TO CHECK IF THE PAGE NAME EQUALS THE ALBUM PAGE
+ -->
           <button
             class="btn btn-outline-light"
-            @click="destroyAlbum()"
+            @click="destroyAlbum(album)"
             v-if="route.name == 'Album' && album.creatorId == account.id"
           >
             Archive Album
@@ -38,9 +34,12 @@
         </li>
         <li v-else-if="album">
           <!-- TODO NOTE -->
+          <!-- USE OUR ROUTE VARIABLE TO CHECK IF THE PAGE NAME EQUALS THE ALBUM PAGE
+ -->
+
           <button
             class="btn btn-outline-light"
-            @click="destroyAlbum()"
+            @click="destroyAlbum(album)"
             v-if="route.name == 'Album' && album.creatorId == account.id"
           >
             Unarchive Album
@@ -69,13 +68,25 @@ export default {
       account: computed(() => AppState.account),
       album: computed(() => AppState.activeAlbum),
 
-      async destroyAlbum() {
+      async destroyAlbum(album) {
         try {
-          const yes = await Pop.confirm(
-            "Are you sure you want to delete this album?"
-          );
-          if (!yes) {
-            return;
+          // QUICK WAY TO SET UP TWO POP CONFIRMS
+          // SENT DOWN ALBUM OBJECT FROM ON CLICK THEN CHECKED IF IT'S ARCHIVED OR NOT
+          // IF IT ISN'T POP CONFIRM FOR DELETE, IF IT IS POP CONFIRM FOR UNARCHIVE
+          if (!album.archived) {
+            const yes = await Pop.confirm(
+              "Are you sure you want to delete this album?"
+            );
+            if (!yes) {
+              return;
+            }
+          } else {
+            const yes = await Pop.confirm(
+              "Are you sure you want to Unarchive this album?"
+            );
+            if (!yes) {
+              return;
+            }
           }
           const albumId = route.params.albumId;
           await albumsService.destroyAlbum(albumId);
@@ -109,5 +120,10 @@ a:hover {
   nav {
     height: 64px;
   }
+}
+
+.nav-blur {
+  backdrop-filter: blur(15px);
+  border-bottom: 1px rgba(255, 255, 255, 0.352) solid;
 }
 </style>

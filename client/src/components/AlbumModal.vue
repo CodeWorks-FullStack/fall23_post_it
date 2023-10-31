@@ -1,4 +1,5 @@
 <template>
+  <!-- MAKE SURE TO SET ID OF MODAL FOR BUTTON TO HIT -->
   <div
     class="modal fade"
     id="createAlbumModal"
@@ -21,6 +22,7 @@
         <div class="modal-body">
           <!-- FORM -->
           <form @submit.prevent="createAlbum()">
+            <!-- TITLE -->
             <div class="mb-3">
               <label for="title" class="form-label">Title</label>
               <input
@@ -31,6 +33,7 @@
                 id="title"
               />
             </div>
+            <!-- COVER IMAGE -->
             <div class="mb-3">
               <label for="coverImage" class="form-label">Cover Image</label>
               <input
@@ -41,6 +44,7 @@
                 id="coverImage"
               />
             </div>
+            <!-- CATEGORy -->
             <div class="mb-3">
               <label for="category" class="form-label">Category</label>
               <select
@@ -49,6 +53,7 @@
                 name=""
                 id=""
               >
+                <!-- V-FOR OVER THE CATEGORY VARIABLE WE MADE IN SETUP -->
                 <option
                   :value="category"
                   v-for="category in categories"
@@ -76,9 +81,11 @@ import { Modal } from "bootstrap";
 export default {
   setup() {
     const editable = ref({});
+    // ASSIGN A VARIABLE TO HOLD ALL THE CATEGORIES WE MADE FROM SERVER SO WE CAN V-FOR OVER THEM
     const categories = ["misc", "dogs", "games", "gachamon", "animals", "cats"];
 
     return {
+      // MAKE SURE YOU RETURN ANY VARIABLES YOU WILL WANT TO USE IN YOUR HTML
       categories,
       editable,
 
@@ -86,6 +93,7 @@ export default {
         try {
           const albumData = editable.value;
           await albumsService.createAlbum(albumData);
+          // CLEAR OUT OUR EDITABLE, AND CLOSE OUR MODAL ON CREATE
           Pop.success("Created Album!");
           editable.value = {};
           Modal.getOrCreateInstance("#createAlbumModal").hide();

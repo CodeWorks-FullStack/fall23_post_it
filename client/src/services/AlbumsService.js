@@ -9,7 +9,6 @@ class AlbumsService {
     logger.log("[ALBUMS SERVICE] getAlbums() => res.data:", res.data);
     AppState.albums = res.data.map((album) => new Album(album));
   }
-
   async getAlbumById(albumId) {
     AppState.activeAlbum = null;
     const res = await api.get(`api/albums/${albumId}`);
