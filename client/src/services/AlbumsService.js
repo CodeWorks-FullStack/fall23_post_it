@@ -16,6 +16,18 @@ class AlbumsService {
     logger.log("[ALBUMS SERVICE] getALbumsById() -> res.data", res.data);
     AppState.activeAlbum = new Album(res.data);
   }
+
+  async createAlbum(albumData) {
+    const res = await api.post(`api/albums`, albumData);
+    logger.log("[ALBUMS SERVICE] createAlbum => res.data:", res.data);
+    AppState.albums.push(new Album(res.data));
+  }
+
+  async destroyAlbum(albumId) {
+    const res = await api.delete(`api/albums/${albumId}`);
+    logger.log("[ALBUMS SERVICE] destroyAlbum() -> res.data:", res.data);
+    AppState.activeAlbum = new Album(res.data);
+  }
 }
 
 export const albumsService = new AlbumsService();

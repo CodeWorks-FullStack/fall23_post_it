@@ -23,9 +23,12 @@
         </div>
       </div>
       <!-- SECTION RIGHT SIDE -->
-      <div class="col-12 col-lg-9"></div>
+      <div class="col-12 col-lg-9">
+        <div v-if="!album.archived">Album not archived</div>
+        <div v-else>Album is archived</div>
+      </div>
     </div>
-    <div class="row" v-else>
+    <div class="row height-100 align-item-center" v-else>
       <div class="col-12 text-center fs-1">
         <p>Feremy Jowler throttled your computer...</p>
       </div>
@@ -69,5 +72,9 @@ export default {
 <style>
 p {
   margin: 0;
+}
+
+.height-100 {
+  max-height: 100dvh;
 }
 </style>

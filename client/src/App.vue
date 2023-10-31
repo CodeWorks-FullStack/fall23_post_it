@@ -1,16 +1,18 @@
 <template>
-  <header>
+  <header class="sticky-top">
     <Navbar />
   </header>
   <main>
     <router-view />
   </main>
+  <AlbumModal />
 </template>
 
 <script>
 import { computed } from "vue";
 import { AppState } from "./AppState";
 import Navbar from "./components/Navbar.vue";
+import AlbumModal from "./components/AlbumModal.vue";
 
 export default {
   setup() {
@@ -18,7 +20,7 @@ export default {
       appState: computed(() => AppState),
     };
   },
-  components: { Navbar },
+  components: { Navbar, AlbumModal },
 };
 </script>
 <style lang="scss">
