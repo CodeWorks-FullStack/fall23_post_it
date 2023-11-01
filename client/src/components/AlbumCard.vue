@@ -4,6 +4,9 @@
       <img class="img-fluid img-shadow" :src="albumProp.coverImg" alt="" />
     </router-link>
     <p class="fs-5 text-white text-shadow">{{ albumProp.title }}</p>
+    <p class="text-white">
+      <i class="mdi mdi-heart"></i> {{ albumProp.memberCount }}
+    </p>
   </div>
 </template>
 

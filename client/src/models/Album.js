@@ -3,6 +3,7 @@ export class Album {
     this.id = data.id;
     this.title = data.title;
     this.category = data.category;
+    this.memberCount = data.memberCount;
     this.archived = data.archived;
     this.coverImg = data.coverImg;
     this.creatorId = data.creatorId;
