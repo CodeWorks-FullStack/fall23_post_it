@@ -57,7 +57,7 @@
             :key="collaborator.id"
             class="col-4"
           >
-            <!-- NOTE MAKE A ACTUAL COMPONENT -->
+            <!-- NOTE MAKE A ACTUAL COMPONENT FOR REUSABILITY -->
             <img
               class="img-fluid rounded-circle my-1"
               :src="collaborator.profile.picture"
@@ -145,6 +145,7 @@ export default {
       pictures: computed(() => AppState.pictures),
       account: computed(() => AppState.account),
       collaborators: computed(() => AppState.collaborators),
+      // NOTE GO TO OUR APPSTATE AND TRY TO FIND IF I'M ACTUALLY A COLLABORATOR ON THIS ALBUM
       isCollaborator: computed(() =>
         AppState.collaborators.find(
           (collaborator) => collaborator.accountId == AppState.account.id

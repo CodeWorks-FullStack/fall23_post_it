@@ -27,6 +27,7 @@ AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async function() {
   await accountService.getAccount();
   socketService.authenticate(AuthService.bearer);
   // NOTE if there is something you want to do once the user is authenticated, place that here
+  // NOTE USE YOUR AUTHSERVICE TO VERIFY THE USER IS ACTUALLY LOGGED IN, THEN MAKE A CALL TO YOUR ACCOUNT SERVICE TO GET YOUR COLLABORATED ALBUMS
   await accountService.getCollabAlbums();
 });
 

@@ -52,6 +52,7 @@ export default {
 
     onMounted(() => {
       getAlbums();
+      // NOTE THIS WILL NOT WORK BECAUSE THERE IS NO USER LOGGED IN FOR OUR AUTH TOKEN ON SERVER SIDE
       // getCollabAlbums();
     });
     async function getAlbums() {
@@ -62,6 +63,9 @@ export default {
         Pop.error("[ERROR]", error.message);
       }
     }
+
+    // NOTE WON'T ACTUALLY NEED THIS FUNCTIONALITY, MOVE SERVICE CALLBACK TO AUTHSERVICE
+
     // async function getCollabAlbums() {
     //   try {
     //     await accountService.getCollabAlbums();
@@ -73,6 +77,7 @@ export default {
     return {
       categories,
       filteredCategory,
+      // NOTE USE COMPUTED FUNCTIONALITY TO USE YOUR FILTERED CATEGORY REF TO FILTER THROUGH OUR ARRAY AND RETURN THE ONES WE CLICK ON
       albums: computed(() => {
         if (filteredCategory.value) {
           return AppState.albums.filter(

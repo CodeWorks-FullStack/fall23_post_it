@@ -8,6 +8,7 @@ export class Collaborator {
     this.createdAt = data.createdAt;
     this.updatedAt = data.updatedAt;
     this.profile = data.profile;
+    // NOTE MAKE SURE TO CHECK IF WE'RE ACTUALLY PASSING AN ALBUM THROUGH OUR DATA => IF NOT WE NEED TO MAKE SURE TO RETURN NULL OR THAT UNDEFINED OBJECT
     this.album = data.album ? new Album(data.album) : null;
   }
 }
